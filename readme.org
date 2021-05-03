@@ -48,22 +48,24 @@ redefine keys to your liking.
 Sometimes just having a graphical representation of something enabled or
 disabled is enough. But often times, we would also like something to happen when
 we disable or enable a checkbox. I haven't come to implement this functionality
-yet, it is on TODO list :). I will do this via text properties, but I haven't
-had time yet to implement it.
+yet, it is on TODO list :). I have some thoughts on implementing this via text
+properties, but I haven't had time to test that idea yet.
 
 However, there are two general hooks defined, which you can use in usual Emacs
 manner to add your own hooks which will be run when you toggle a checkbox. Yes
-it is very limited use indeed, but for now it is all there is to it.
+it is very limited/awkward and inneficient, but it is possible to check some
+regex at point and do something based on that, but for now it is all there is to
+it.
 
 If you manually place point between square braces and change char to something
 else than x or space, or even toggle the box, the heading will not be recognized
-as a checkbox heading. Depending on your view it is a feature or a bug.
+as a checkbox heading. Depending on your point of view it is a feature or a bug.
 
 * Issues
 
-This is a work in progress, both conceptually and implementation wise. Hook per
-checkbox to be implemented. Trees of headings are not implemented
-either. Probably lots of bugs in regard with other org-features. Feedback is
+This is a work in progress, both conceptually and implementation wise. Hooks per
+checkbox to be implemented maybe. Trees of headings are not implemented
+either. Probably lots of bugs in regard to other org-features. Feedback is
 welcome.
 
 * License
