@@ -24,11 +24,13 @@ Enable the mode with M-x org-heading-checkbox-mode, or from lisp with:
 
 #+begin_src emacs-lisp
 (org-heading-checkbox-mode 1)
-#end_src
+#+end_src
 
-Or add it to org-mode-hook:
+You could also add it to org-mode-hook:
 
+#+begin_src emacs-lisp
 (add-hook 'org-mode-hook (lambda () (org-heading-checkbox-mode 1))).
+#+end_src
 
 Create a heading with either "[ ]" or "[x]" after the leading stars, but beffore
 the heading text. Number of spaces after stars and before the heading itself
