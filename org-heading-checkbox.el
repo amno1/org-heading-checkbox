@@ -63,9 +63,9 @@
   (when (ohc--checkbox-enabled-p)
     (save-excursion
       (beginning-of-line)
-      (replace-string "[ ]" "[x]" nil (line-beginning-position)
-                      (line-end-position))
-      (run-hooks 'org-heading-checkbox-enabled-hooks))))
+      (when (re-search-forward "\\[ \\]" (line-end-position) t 1)
+        (replace-match "[x]")
+        (run-hooks 'org-heading-checkbox-enabled-hooks)))))
 
 (defun ohc--checkbox-disable ()
   "Disable checkbox for heading at point."
@@ -73,9 +73,9 @@
   (when (ohc--checkbox-enabled-p)
     (save-excursion
       (beginning-of-line)
-      (replace-string "[x]" "[ ]" nil (line-beginning-position)
-                      (line-end-position))
-      (run-hooks 'org-heading-disabled-hooks))))
+      (when (re-search-forward "\\[x\\]" (line-end-position) t 1)
+        (replace-match "[ ]")
+        (run-hooks 'org-heading-disabled-hooks)))))
 
 (defun ohc--checkbox-toggle ()
   "Toggle state of checkbox at heading under the point."
@@ -83,13 +83,13 @@
   (save-excursion
     (beginning-of-line)
     (cond ((looking-at ohc--enabled-re)
-           (replace-string "[x]" "[ ]" nil (line-beginning-position)
-                           (line-end-position))
-           (run-hooks 'org-heading-checkbox-disabled-hooks))
+           (when (re-search-forward "\\[x\\]" (line-end-position) t 1)
+             (replace-match "[ ]")
+             (run-hooks 'org-heading-checkbox-disabled-hooks)))
           ((looking-at ohc--disabled-re)
-           (replace-string "[ ]" "[x]" nil (line-beginning-position)
-                           (line-end-position))
-           (run-hooks 'org-heading-checkbox-enabled-hooks))
+           (when (re-search-forward "\\[ \\]" (line-end-position) t 1)
+             (replace-match "[x]")
+             (run-hooks 'org-heading-checkbox-enabled-hooks)))
           (t (error "Not at org-heading-checkbox line.")))))
 
 (defun ohc--shiftup ()
@@ -106,10 +106,10 @@
 
 (defvar org-heading-checkbox-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map [remap org-shiftup] #'ohc--shiftup)
-    (define-key map [remap org-shiftdown] #'ohc--shiftdown)
+    (define-key map [S-up] #'ohc--shiftup)
+    (define-key map [S-down] #'ohc--shiftdown)
     map)
-  "Keymap used in `org-init-mode'.")
+  "Keymap used in `org-heading-checkbox-mode'.")
 
 ;;;###autoload
 (define-minor-mode org-heading-checkbox-mode
