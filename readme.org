@@ -1,0 +1,63 @@
+* About
+
+This package implements a minor mode that will enable checkboxes in headings in
+style of org-mode checkboxes as used in lists. It is very light and simple.
+
+This is not a package yet, but if I get good feedback on this one, I am thinking
+of making it into a Melpa package. 
+
+
+[[./screenshot2.png]]
+
+[[./screenshot.png]]
+
+* Installation
+
+To install either clone this repo, or just
+download org-heading-checkbox.el somewhere where your Emacs can find
+it. Alternatively you can also download it and install it with:
+
+`M-x package-install-file'. 
+
+* Usage
+
+Enable the mode with M-x org-heading-checkbox-mode, or add it to org-mode-hook:
+
+Create a heading with either "[ ]" or "[x]" after the leading stars, but beffore
+the heading text. Number of spaces after stars and before the heading itself
+does not matter. Now you have a heading with a checkbox. You can place point
+somewhere on the heading line, and use S+up/down to toggle the checkbox.
+
+Currently S+up/down arrows are already bound by org-mode, but so is every other
+possible modifier or modifier combination. They have really seen to use every
+meaningful key combo for something in org, which leaves any third party or user
+with only option to overwrite something, or define own prefixes. I have done it
+so that keys will toggle on/off the checkbox when a heading has one, but when
+there is not one, it will just do whatever org-mode already does. But feel free to
+redefine keys to your liking.
+
+Sometimes just having a graphical representation of something enabled or
+disabled is enough. But often times, we would also like something to happen when
+we disable or enable a checkbox. I haven't come to implement this functionality
+yet, it is on TODO list :). I will do this via text properties, but I haven't
+had time yet to implement it.
+
+However, there are two general hooks defined, which you can use in usual Emacs
+manner to add your own hooks which will be run when you toggle a checkbox. Yes
+it is very limited use indeed, but for now it is all there is to it.
+
+If you manually place point between square braces and change char to something
+else than x or space, or even toggle the box, the heading will not be recognized
+as a checkbox heading. Depending on your view it is a feature or a bug.
+
+* Issues
+
+This is a work in progress, both conceptually and implementation wise. Hook per
+checkbox to be implemented. Trees of headings are not implemented
+either. Probably lots of bugs in regard with other org-features. Feedback is
+welcome.
+
+* License
+
+GPL v3, see [[file:LICENSE][featured License]] file for details.
+
