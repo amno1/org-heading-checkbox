@@ -1,11 +1,10 @@
 * About
 
-This package implements a minor mode that will enable checkboxes in headings in
+This package implements a minor mode to enable checkboxes in headings in
 style of org-mode checkboxes as used in lists. It is very light and simple.
 
 This is not a package yet, but if I get good feedback on this one, I am thinking
 of making it into a Melpa package. 
-
 
 [[./screenshot2.png]]
 
@@ -13,15 +12,23 @@ of making it into a Melpa package.
 
 * Installation
 
-To install either clone this repo, or just
-download org-heading-checkbox.el somewhere where your Emacs can find
-it. Alternatively you can also download it and install it with:
+To install either clone this repo, or just download org-heading-checkbox.el
+somewhere where your Emacs can find it. Alternatively you can also download it
+and install it with: 
 
 `M-x package-install-file'. 
 
 * Usage
 
-Enable the mode with M-x org-heading-checkbox-mode, or add it to org-mode-hook:
+Enable the mode with M-x org-heading-checkbox-mode, or from lisp with:
+
+#+begin_src emacs-lisp
+(org-heading-checkbox-mode 1)
+#end_src
+
+Or add it to org-mode-hook:
+
+(add-hook 'org-mode-hook (lambda () (org-heading-checkbox-mode 1))).
 
 Create a heading with either "[ ]" or "[x]" after the leading stars, but beffore
 the heading text. Number of spaces after stars and before the heading itself
